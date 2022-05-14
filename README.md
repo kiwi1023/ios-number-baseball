@@ -1,9 +1,38 @@
-## iOS 커리어 스타터 캠프
+# 숫자야구 프로젝트
+> 프로젝트 기간 2022/04/12 ~ 2022/04/15
+> 팀원: Kiwi, bonf 
 
-### 숫자야구 프로젝트 저장소
+## 목차
+- [프로젝트 소개](#프로젝트-소개)
+- [순서도](#순서도)
+- [STEP 1](#STEP-1)
+- [STEP 2](#STEP-2)
 
-- 이 저장소를 자신의 저장소로 fork하여 프로젝트를 진행합니다
+## 프로젝트 소개
+사용자의 입력값을 받는 숫자야구 게임
 
+### 개발환경 및 라이브러리
+[![swift](https://img.shields.io/badge/swift-5.6-orange)]()
+[![xcode](https://img.shields.io/badge/Xcode-13.3-blue)]()
+
+
+### 프로젝트 수행 중 핵심 경험
+- [x]  순서도 익히기
+- [x]  함수 단위 고민하기
+- [x]  Git의 기본 사용(add, commit, push, pull)
+- [x]  GitHub의 원격 공동 저장소 활용
+- [x]  Git 저장소의 충돌 해결
+- [x]  Git Branch의 이해
+- [x]  GitHub에서 Pull Request 전송
+- [x]  Swift API Design Guidelines 읽어보기
+- [x]  Swift Set의 이해와 활용
+- [x]  Swift의 Optional 안전하게 처리하기
+- [x]  Git의 커밋단위 고민하기
+- [x]  Git 커밋 로그 형식 고민하기
+- [x]  스위프트 코딩 컨벤션 고민하기
+- [x]  동료와 협업자세 고민하기
+
+## 순서도
 #### STEP1 순서도
 
 ![](https://i.imgur.com/BYbGlyR.png)
@@ -12,28 +41,37 @@
 
 ![](https://i.imgur.com/Fd4pPRJ.png)
 
-- if let 말고도 옵셔널 처리하는 방법에는 무엇이 있나요? 각각은 어떤 상황에 적절할까요?
-1. ! 강제 언랩핑
+## STEP 1
 
-2. if 문 사용
-(ex. if name != nil { print(name) } )
+### 고민한점 🤔
+1. 들여쓰기 2회 초과 금지 제한을 제대로 이해하지 못하여 뒤늦게 고민하게 되었습니다. 그러나 들여쓰기를 없애려 노력하다 보니 함수의 기능 분화가 자연스럽게 이루어 지게 되었습니다
 
-3. 옵셔널 바인딩 사용
+2. Array 중복 제거 코딩을 하는 중 들여쓰기 2회 초과 금지 조건을 충족시키기 위해 오래 고민하였습니다. For if 문의 굴레에서 벗어나지 못하던 중 Set의 존재를 인식하여 Set을 이용하여 해결하게 되었습니다.
 
-if let
-guard let
+3. Set 인덱스 여부 오인
+Set은 인덱스 순서가 없어서 자리를 비교할 수 없었습니다. 그래서 Array를 Set으로 변경하려고 보니 변경 시에 정렬이 되는 문제가 생겨서, 결국 Set을 Array로 먼저 변환하고 숫자의 자리를 비교하는 방법을 사용하여 해결하게 되었습니다.
 
-4. Nil-Coalescing
- 
- -  반환 값이 없을 때 괄호를 표기한 것이 좋을까요?
-헷갈리지 않기 위해 제거하는 것이 좋겠네요
+4. git을 통한 협업 과정에서 pull을 하지 않은 상태에서 코드의 변경을 진행하여 충돌이 발생 하였습니다.
+그래서 충돌 부분을 수동으로 삭제를 하였고 push에 성공하게 되었습니다.
 
-- components 말고도 split이라는 메서드도 있는데요. 둘은 어떤 차이가 있을까요?
-- 위 코드를 split으로 구현한다면 어떻게 구현될까요?
-components는 String 타입으로 값이 반환되고, split은 subString 타입으로 값이 반환됩니다.
-또한, components는 foundation이 import되어있을 때만 사용 가능합니다.
+5. 코드 네이밍을 진행할 때에 축약어들을 사용하거나, 타입명을 사용을 하는 경우가 있었습니다. 그래서 리뷰어분의 조언을 받아 축약어를 완전한 단어로 변경하였으나, 타입명의 경우 타입명을 제외시키고 네이밍을 다시하는 것에 어려움이 있었습니다.
 
-- 옵셔널 체이닝 사용하고 if let을 통해 다시 옵셔널 제거를 시도하네요. readLine()을 guard로 옵셔널을 제거하고 이후 코드를 진행시키는 것은 어떤가요?
-- if let과 guard let의 차이는 무엇일까요?
-if let 은 바인딩한 값을 scope 안에서 지역변수로써 사용 가능하고 guard let은 함수안에서 사용하여 바인딩한 값을 return 하여 전역 변수로 활용 가능 합니다.
+### 배운개념 ✏️
 
+- 함수 네이밍
+- 함수 기능별 분화
+- Set
+- git의 활용
+
+
+## STEP 2
+
+### 고민한점 🤔
+
+1. components와 split의 차이점
+split의 경우 타입이 'subString’타입의 배열이 생성되고, foundation을 import해주지 않아도 사용 가능하다. 반면 components의 경우 'String’타입으로 배열이 생성되고, import foundation을 해주어야만 이용 가능하다.
+
+### 배운개념 ✏️
+
+- 고차 함수
+- import Foundation을 통해 componets 사용할 수 있음
